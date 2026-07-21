@@ -1,10 +1,11 @@
 import pandas as pd
 import numpy as np
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder , FunctionTransformer , OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder  , OrdinalEncoder
 from sklearn.pipeline import Pipeline 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import root_mean_squared_error
 import joblib
 
 insurance = pd.read_csv("F://Insurance_charges//Data//insurance.csv")
@@ -30,5 +31,7 @@ forest_pipeline = Pipeline([
     ("model", RandomForestRegressor(random_state=42 , max_depth=5 , min_samples_leaf=5 , min_samples_split=14 , n_estimators=140))
 ])
 
+forest_pipeline.fit(x_train,y_train)
+prediction = forest_pipeline.predict(x_test)
 
-
+joblib.dump(forest_pipeline, "F://INSURANCE_CHARGES//tree_pipeline.joblib")
