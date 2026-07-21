@@ -11,3 +11,17 @@ bmi = st.number_input("bmi", min_value=0.0, value=30.66)
 children = st.number_input("Childern", min_value=0, value=0)
 smoker = st.selectbox("Smoke?", ["yes", "no"])
 region = st.selectbox("Region: ", ["southeast", "southwest" , "northwest" , "northeast"])
+
+predict_clicked = st.button("Predict Charges", use_container_width=True)
+
+if predict_clicked:
+    input_df = pd.DataFrame([{
+        "age" : age,
+        "sex" : sex,
+        "bmi" : bmi,
+        "children" : children,
+        "smoker" : smoker,
+        "region" : region
+    }])
+
+    
