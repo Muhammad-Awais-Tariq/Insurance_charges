@@ -24,4 +24,6 @@ if predict_clicked:
         "region" : region
     }])
 
-    
+    prediction = model.predict(input_df)[0]
+    st.success(prediction)
+ 
