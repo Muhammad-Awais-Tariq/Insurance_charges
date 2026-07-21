@@ -4,7 +4,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder , FunctionTransformer , OrdinalEncoder
 from sklearn.pipeline import Pipeline 
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble        import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
 import joblib
 
 insurance = pd.read_csv("F://Insurance_charges//Data//insurance.csv")
@@ -24,4 +24,11 @@ preprocessing = ColumnTransformer([
     ("ohe", OneHotEncoder(drop='first'), ohe_column),
     ("ordinal", OrdinalEncoder(categories=[['female','male'], ['no','yes']]), ordinal_columns),
 ])
+
+forest_pipeline = Pipeline([
+    ("preprocessing", preprocessing),
+    ("model", RandomForestRegressor(random_state=42 , max_depth=5 , min_samples_leaf=5 , min_samples_split=14 , n_estimators=140))
+])
+
+
 
