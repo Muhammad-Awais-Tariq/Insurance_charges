@@ -53,4 +53,4 @@ if predict_clicked:
 
 
     with st.expander("See input summary"):
-        st.dataframe(input_df, width=True, hide_index=True)
+        st.dataframe(input_df, width=True, hide_index=True , use_container_width=True)
